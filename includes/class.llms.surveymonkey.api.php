@@ -53,6 +53,29 @@ class LLMS_SurveyMonkey_API extends SurveyMonkey
 		{
 			return $surveys;
 		}		
+	}
+
+	public function GetWebUrl($survey)
+	{
+		$SM = new SurveyMonkey($this->apikey, $this->accesstoken);
+		$result = $SM->getCollectorList($survey, array('fields' => array('url','open','type')));
+
+		if ($result['success'])
+		{
+			$collector = $result['data']['collectors'][0];
+			if ($collector['open'] && $collector['type'] == 'url')
+			{
+				return $collector['url'];
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}		
 
 	private function set_apikey() 

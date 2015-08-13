@@ -14,13 +14,18 @@ class LLMS_Settings_Course_SurveyMonkey {
 		{
 			// Adds a filters that runs whenever the course page is loaded
 			add_filter( 'llms_meta_fields_course_main', array( $this, 'ExtendSettings' ));
+			//add_filter( 'lifterlms_engagement_types', array( $this, 'CustomEngagement' ));
 
 			// Adds an action that comes whenever a page is loaded
 			add_action( 'save_post', array($this, 'PostUpdateHandler') );
 		}
 	}
 	
-
+	public function CustomEngagement($engagements)
+	{
+		/*$engagements['survey'] = 'Send Survey';
+		return $engagements;*/
+	}
 	
 	public function ExtendSettings($content) 
 	{		

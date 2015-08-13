@@ -25,13 +25,13 @@ class LLMS_Settings_Integrations_SurveyMonkey
 			'type' => 'sectionstart',
 			'id' => 'surveymonkey_options', 
 			'class' =>'top'
-			);
+		);
 		$content[] = array( 
 			'title' => __( 'SurveyMonkey Settings', 'lifterlms' ), 
 			'type' => 'title', 
 			'desc' => '', 
 			'id' => 'surveymonkey_options' 
-			);
+		);
 
 		$content[] = array(
 				'desc' 		=> __( 'Enable SurveyMonkey', 'lifterlms' ),
@@ -39,11 +39,19 @@ class LLMS_Settings_Integrations_SurveyMonkey
 				'type' 		=> 'checkbox',
 				'default'	=> 'no',
 				'desc_tip'	=> true,
-			);
+		);
 
 		// only show when enabled
 		if (self::Enabled() == 'yes') 
 		{
+			$default_email = 'Congratulations {first_name} {last_name}!
+
+You have successfully completed {course_name}! We hope that it was beneficial for you. If you have the time, we would love to hear your thoughts about the course.
+
+If you have the time, could you please take five minutes to respond to a quick survey about the course? The link to the survey is {survey_link}.
+
+Thank you so much!';
+
 			$content[] = array(
 					'title' => __( 'API Key', 'lifterlms' ),
 					'desc' 		=> __( 'Api key provided by SurveyMonkey', 'lifterlms' ),
@@ -66,6 +74,36 @@ class LLMS_Settings_Integrations_SurveyMonkey
 				'title' => '',
 				'value' => __( 'Update Surveys', 'lifterlms' ),
 				'type' 		=> 'button',
+			);
+
+			$content[] = array(
+					'title' => __( 'Email Message Template', 'lifterlms' ),
+					'desc' 		=> __( 'Template to use for emailing survey link after a user has completed a course.  
+										You can include any of the following merge fields to customize the email.
+										<br>{site_title}
+										<br>{user_login}
+										<br>{site_url}
+										<br>{first_name}
+										<br>{last_name}
+										<br>{email_address}
+										<br>{course_name}
+										<br>{survey_link}
+										<br>{current_date}</p>', 'lifterlms' ),
+					'id' 		=> 'lifterlms_surveymonkey_emailtemplate',
+					'type' 		=> 'textarea',
+					'default'	=> $default_email,
+					'desc_tip'	=> true,
+					'class' 	=> 'email-template'
+			);
+			$content[] = array(
+				'title' => '',
+				'value' => __( 'Restore Default', 'lifterlms' ),
+				'type' 	=> 'button',
+			);
+			$content[] = array(
+				'title' => '',
+				'value' => __( 'Restore Default', 'lifterlms' ),
+				'type' 	=> 'custom-html',
 			);
 		}
 
