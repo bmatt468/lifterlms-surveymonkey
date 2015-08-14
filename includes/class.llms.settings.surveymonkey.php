@@ -1,10 +1,24 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
+/**
+ * This class contains the logic and the functions 
+ * that extend the integrations tab of LifterLMS.
+ * This class has functions to add the additional
+ * content, save the additional content, and 
+ * create a custom template to be used for
+ * email the courses.
+ */
 class LLMS_Settings_Integrations_SurveyMonkey 
-{
-	
+{	
+	/**
+	 * Class constructor. This constructor attaches functions in 
+	 * this file to the appropriate actions.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public function __construct() 
 	{
 		// Add filter to when settings page is loaded
@@ -18,7 +32,13 @@ class LLMS_Settings_Integrations_SurveyMonkey
 		add_action('init', array( $this, 'register_hooks'), 10, 1);
 	}
 
-	
+	/**
+	 * This function is responsible for extending the tabs
+	 * contained on the integration pane of LifterLMS.
+	 * 
+	 * @param  array $content Array of field for intergrations
+	 * @return array Updated array of fields
+	 */
 	public function get_integration_settings($content) 
 	{
 		$content[] = array(
@@ -111,12 +131,26 @@ Thank you so much!';
 		return $content;
 	}
 
+	/**
+	 * This function checks to see if this plugin is validated.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public static function Enabled () {
 
 		return get_option('lifterlms_surveymonkey_enabled', '');
 	}
 
-	
+	/**
+	 * This function registers the hooks that are used in this plugin.
+	 * This function is responsible for doing the actions that update the plugin.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public function register_hooks() 
 	{
 		if ( isset($_POST['save']) && strtolower($_POST['save']) == 'update surveys') 

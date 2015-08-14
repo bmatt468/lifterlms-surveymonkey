@@ -7,6 +7,13 @@ if ( ! class_exists( 'SurveyMonkey' ) ) :
 	echo "ERROR: SurveyMonkey API failed to load."; exit;
 endif;
 
+/**
+ * This class is responsible for extending the SurveyMonkey API.
+ * This class contains the logic to make calls the a SM wrapper 
+ * when needed to direct resources.
+ *
+ * @since 0.1.0
+ */
 class LLMS_SurveyMonkey_API extends SurveyMonkey
 {	
 	/**
@@ -29,6 +36,14 @@ class LLMS_SurveyMonkey_API extends SurveyMonkey
 		$this->set_apikey();
 	}
 
+	/**
+	 * This function is responsible for making a call to the 
+	 * SurveyMonkey API and retrieving the array of surveys registered for this user.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return array Array of survey data
+	 */
 	public function GetSurveys()
 	{
 		$surveys = array();
@@ -55,6 +70,17 @@ class LLMS_SurveyMonkey_API extends SurveyMonkey
 		}		
 	}
 
+	/**
+	 * This function is responsible for making a call to the 
+	 * SurveyMonkey API and retrieving the URL of the first 
+	 * available web collector.
+	 *
+	 * @param int $survey ID of survey
+	 * 
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public function GetWebUrl($survey)
 	{
 		$SM = new SurveyMonkey($this->apikey, $this->accesstoken);
@@ -78,6 +104,14 @@ class LLMS_SurveyMonkey_API extends SurveyMonkey
 		}
 	}		
 
+	/**
+	 * This function sets the API key and access token
+	 * varaibles which are used throughout the script.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	private function set_apikey() 
 	{
 		$this->apikey = get_option('lifterlms_surveymonkey_apikey', '');

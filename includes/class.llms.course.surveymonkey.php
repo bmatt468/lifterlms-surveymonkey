@@ -1,12 +1,26 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
+/**
+ * This class contains the logic that adds the additional 
+ * meta box to the course page. Along with adding the 
+ * meta box, this class contains a function that is responsible 
+ * for saving the data on a $_POST request
+ *
+ * @since 0.1.0
+ */
 class LLMS_Settings_Course_SurveyMonkey {
 
 	public static $prefix = '_';
-
 	
+	/**
+	 * Class constructor. This constructor attaches functions in 
+	 * this file to the appropriate actions.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public function __construct() 
 	{
 		// This confirms that the plugin is activated before running
@@ -21,12 +35,31 @@ class LLMS_Settings_Course_SurveyMonkey {
 		}
 	}
 	
+	/**
+	 * This function will be used down the road to extend
+	 * the engagements to include sending a survey.
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public function CustomEngagement($engagements)
 	{
 		/*$engagements['survey'] = 'Send Survey';
 		return $engagements;*/
 	}
 	
+	/**
+	 * This function is used to extend the meta box settings of 
+	 * the course. It takes in the existing meta box array, 
+	 * modifies it, and then returns the updated array.
+	 *
+	 * @param array $content Array of metabox fields
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return array Updated array of metabox fields
+	 */
 	public function ExtendSettings($content) 
 	{		
 		$surveys = array();
@@ -62,6 +95,15 @@ class LLMS_Settings_Course_SurveyMonkey {
 		return $content;
 	}
 
+	/**
+	 * This function is the save function. This function is
+	 * called whenever a post is updated. This functions checks 
+	 * to see if any of the survey monkey fields need to be updated
+	 *
+	 * @since 0.1.0
+	 * @version  0.8.1
+	 * @return void
+	 */
 	public function PostUpdateHandler()
 	{	
 		if (isset($_POST['post_ID'])) 
