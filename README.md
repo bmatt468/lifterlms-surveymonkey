@@ -1,6 +1,9 @@
 # lifterlms-surveymonkey
 # Change Log
 
+##0.8.2 - 2015-08-18
++ Fixes PHP compatibility
+
 ##0.8.1 - 2015-08-13
 + Code optomization
 + Code cleanup

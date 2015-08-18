@@ -131,12 +131,14 @@ if ( ! class_exists( 'LLMS_SurveyMonkey') ) :
 		 * class to fetch the array of surveys. It returns that array.
 		 *
 		 * @since 0.1.0
-		 * @version 0.8.1
+		 * @version 0.8.2
 		 * @return array Array of ID's of surveys
 		 */
 		public static function GetSurveys() 
 		{
-			return (new LLMS_SurveyMonkey_API)->GetSurveys();
+			$a = new LLMS_SurveyMonkey_API;
+			$r = $a->GetSurveys();
+			return $r;
 		}
 
 		/**
@@ -193,12 +195,14 @@ if ( ! class_exists( 'LLMS_SurveyMonkey') ) :
 		 * to get the open web collector.
 		 *
 		 * @since 0.1.0
-		 * @version 0.8.1
+		 * @version 0.8.2
 		 * @return string URL of open web collector
 		 */
 		public static function GetWebUrl($survey)
 		{
-			return (new LLMS_SurveyMonkey_API)->GetWebUrl($survey);
+			$a = new LLMS_SurveyMonkey_API;
+			$r = $a->GetWebUrl($survey);
+			return $r;
 		}
 
 		/**
